@@ -1,0 +1,53 @@
+#include <stdlib.h>
+#include <string.h>
+
+char* gcdOfStrings(char* str1, char* str2) {
+
+    int len1 = strlen(str1);
+    int len2 = strlen(str2);
+
+    int min = (len1 < len2) ? len1 : len2;
+
+    while (min > 0) {
+
+        if (len1 % min == 0 && len2 % min == 0) {
+
+            int valid = 1;
+
+            // Check str1
+            for (int i = 0; i < len1; i++) {
+                if (str1[i] != str1[i % min]) {
+                    valid = 0;
+                    break;
+                }
+            }
+
+            // Check str2
+            if (valid) {
+                for (int i = 0; i < len2; i++) {
+                    if (str2[i] != str1[i % min]) {
+                        valid = 0;
+                        break;
+                    }
+                }
+            }
+
+            if (valid) {
+                char *result = (char *)malloc(min + 1);
+
+                for (int i = 0; i < min; i++) {
+                    result[i] = str1[i];
+                }
+
+                result[min] = '\0';
+                return result;
+            }
+        }
+
+        min--;
+    }
+
+    char *result = (char *)malloc(1);
+    result[0] = '\0';
+    return result;
+}
