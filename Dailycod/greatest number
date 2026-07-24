@@ -1,0 +1,29 @@
+#include <stdlib.h>
+#include <stdbool.h>
+
+bool* kidsWithCandies(int candies[], int candiesSize, int extraCandies, int *returnSize)
+{
+    int i, max;
+
+    *returnSize = candiesSize;
+
+    bool result = malloc(candiesSize * sizeof(bool));
+
+    max = candies[0];
+
+    for (i = 1; i < candiesSize; i++)
+    {
+        if (candies[i] > max)
+            max = candies[i];
+    }
+
+    for (i = 0; i < candiesSize; i++)
+    {
+        if (candies[i] + extraCandies >= max)
+            result[i] = true;
+        else
+            result[i] = false;
+    }
+
+    return result;
+}
