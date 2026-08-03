@@ -1,0 +1,46 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include <stdbool.h>
+bool cpf(int fb[],int fbs,int n)
+{
+    for(int i=0;i<fbs;i++)
+    {
+        if(fb[i]==0)
+        {
+            if((i==0||fb[i-1]==0)&&(i==fbs-1||fb[i+1]==0))
+            {
+                fb[i]=1;
+                n--;
+                if(n==0)
+                return true;
+            }
+        }
+    }
+    return n<=0;
+}
+void main()
+{
+    int i,fb[100],fbs,n;
+    printf("enter the fbs: ");
+    scanf("%d",&fbs);
+    printf("enter the flower: ");
+    for(i=0;i<fbs;i++)
+    {
+    scanf("%d",&fb[i]);
+    }
+    printf("enter the flower no: ");
+    scanf("%d",&n);
+    if(cpf(fb,fbs,n))
+    {
+        printf("true");
+    }
+    else
+    printf("false");
+}
